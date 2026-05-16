@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+/* تعريف خط ثمانية (الوزن العادي) */
+@font-face {
+  font-family: 'Thmanyah';
+  src: url('/fonts/thmanyahsans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* تعريف خط ثمانية (الوزن العريض) */
+@font-face {
+  font-family: 'Thmanyah';
+  src: url('/fonts/thmanyahsans-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #000000;
+    color: #E0F4FF;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* تطبيق خط ثمانية على النسخة العربية بالكامل */
+  html[dir="rtl"] body {
+    font-family: 'Thmanyah', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* تكبير خط أزرار البار العلوي والقائمة في النسخة العربية فقط */
+  html[dir="rtl"] nav button.font-orbitron,
+  html[dir="rtl"] div.fixed button.font-orbitron {
+    font-size: 16px !important;
+  }
+
+  /* تكبير إضافي للشاشات الكبيرة (لابتوب/شاشة مكتبية) */
+  @media (min-width: 1280px) {
+    html[dir="rtl"] nav button.font-orbitron,
+    html[dir="rtl"] div.fixed button.font-orbitron {
+      font-size: 18px !important;
+    }
+  }
+  .glow-text {
+    text-shadow: 0 0 20px rgba(0, 191, 255, 0.8), 0 0 40px rgba(0, 191, 255, 0.4);
+    color: white;
+  }
+
+  .card-glow {
+    background: rgba(13, 27, 62, 0.4);
+    border: 1px solid rgba(0, 191, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .card-glow:hover {
+    border-color: rgba(0, 191, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.15);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #00BFFF, #1A2F6E);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: box-shadow 0.3s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: white;
+    text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+  }
+
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00BFFF, transparent);
+    margin: 0.75rem auto 2rem;
+    max-width: 120px;
+  }
+
+  /* فرض خط ثمانية على العناوين والأزرار بدلاً من الخط الإنجليزي الفضائي في النسخة العربية */
+  html[dir="rtl"] .font-orbitron,
+  html[dir="rtl"] .section-title,
+  html[dir="rtl"] .btn-primary {
+    font-family: 'Thmanyah', system-ui, sans-serif !important;
+    letter-spacing: normal;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
